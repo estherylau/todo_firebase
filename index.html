@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="TodoApp">
+<head>
+	<title>ToDo App</title>
+	<link rel="stylesheet" href="css/styles.css">
+	<script src="lib/angular.1.3.4.min.js"></script>
+	<script type="text/javascript" src="lib/angular/angular-resource.js"></script>
+
+	<!-- Firebase -->
+	<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+	<!-- AngularFire -->
+	<script src="https://cdn.firebase.com/libs/angularfire/1.1.1/angularfire.min.js"></script>
+
+	<script src="js/app.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h1>My Todos</h1>
+		<div ng-controller="TodoController">
+			<div id="todo-current">
+				<div class="todo-count">Total of {{length}}</div>
+				<form>
+					<div class="todo-add-new">
+						<input id="todo-add-input" type="text" placeholder="Add Todo" ng-model="newTodo" ng-keyup="keyboardPressed($event);">
+						<input type="button" value="submit" ng-click="addTodo();" style="display: none;">
+					</div>
+					<ul>
+						<li id="row_{{todo.id}}" ng-repeat="todo in toDo | orderBy: 'due':true" class="todo-list" ng-show="todo.archive == false">
+							<input class="todo-checkbox" type="checkbox" ng-model="todo.done" ng-show="todo.editingMode == false" ng-click="updateCompletedCount($event, '', todo);">
+							<span class="done-{{todo.done}}">
+								<span ng-show="!todo.editingMode">{{todo.title}}</span>
+								<span>
+									<input type="text" value="{{todo.title}}" ng-model="todo.title" ng-show="todo.editingMode">
+								</span> 
+
+								<div>
+									<span class="todo-due-date" ng-class="{pastdue: todo.due < date() && !todo.done}" ng-show="!todo.editingMode">{{formatDate(todo.due) | date:'MM/dd/yyyy'}}</span>
+									<input id="date_due_{{todo.id}}" type="text" ng-show="todo.editingMode" value="{{formatDate(todo.due) | date:'MM/dd/yyyy'}}">
+								</div>
+							</span>
+							<div class="todo-btns">
+								<span class="btn-done" ng-show="todo.editingMode == true" ng-click="editTodo(todo);editDate(todo);saveTodo(todo);"></span>
+								<!--
+								<input type="button" value="Done" ng-show="todo.editingMode == true" ng-click="editTodo(todo);editDate(todo);saveTodo(todo);">-->
+
+								<span class="btn-modify" ng-show="todo.editingMode == false && !todo.done" ng-click="editTodo(todo)"></span>
+								<!--<input type="button" value="Save Edit Date" ng-show="todo.editingMode == true" ng-click="editDate(todo);">-->
+								<span class="btn-delete" ng-show="todo.done" ng-click="deleteItem($index, todo, toDo.indexOf(todo))"></span>
+							</div>
+						</li>
+					</ul>
+					<a id="todo-clear-finished" href="#" ng-show="count > 0" ng-click="clearFinishedTodos();">clear <b>{{count}}</b> finished item</a>	
+					<!--<input type="button" value="clear finished todos" ng-show="count > 0" ng-click="clearFinishedTodos();">-->
+				</form>
+			</div>
+			<div id="archiveList">
+				<h1>Archived</h1><input type="button" id="btn-delete-all" value="Delete all" ng-click="archiveDeleteAll();">
+				<ul>
+					<li ng-repeat="archive in toDo" ng-show="archive.archive"><span class="done-{{archive.done}}">ID:{{archive.id}} - {{archive.title}} - due {{formatDate(archive.due) | date: 'MM/dd/yyyy'}}</span>
+						<input type="button" value="Restore" ng-click="archiveRestore(archive, archives.indexOf(archive));">
+						<input type="button" value="Remove Permanently" ng-click="removePerm($index, archive);">
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<script src="js/controllers/todo.js"></script>
+	<script src="js/services/todoService.js"></script>
+</body>
+</html>

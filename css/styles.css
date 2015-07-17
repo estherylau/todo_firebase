@@ -1,0 +1,202 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* end of reset */
+/* mixin */
+html, body {
+  width: 100%;
+  height: 100%; }
+
+body {
+  font-family: Helvetica, Arial, sans-serif;
+  background: #2f85bc;
+  font-size: 16px; }
+
+.container {
+  background: #fff;
+  width: 70%;
+  min-width: 450px;
+  height: auto;
+  margin: 0 auto;
+  padding: 2%;
+  position: relative;
+  top: 30px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px; }
+
+h1 {
+  font-size: 1.625em;
+  margin-bottom: 10px; }
+
+#todo-current {
+  margin-bottom: 20px; }
+
+.todo-count {
+  position: relative;
+  margin: -28px 0 8px 125px; }
+
+form, ul {
+  font-size: .875em; }
+
+li {
+  list-style-type: none;
+  position: relative; }
+
+.todo-add-new {
+  margin-bottom: 10px; }
+
+#todo-add-input {
+  width: 99%;
+  font-size: 1em;
+  height: 25px; }
+
+.todo-list {
+  border-bottom: 1px solid #e6e6e6; }
+
+.done-true {
+  text-decoration: line-through;
+  color: #ccc; }
+
+.todo-checkbox {
+  position: relative;
+  top: 6px; }
+
+.todo-due-date {
+  font-size: .75em;
+  margin-left: 24px;
+  font-style: italic;
+  color: #ccc;
+  position: relative;
+  top: -2px; }
+
+.btn-delete {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  top: 6px;
+  left: 5px;
+  width: 15px;
+  height: 15px;
+  background: url("../images/btn-delete_48x48.png") no-repeat;
+  background-size: 100%; }
+
+.btn-delete:hover {
+  background: url("../images/btn-delete-hover_48x48.png") no-repeat;
+  width: 15px;
+  height: 15px;
+  background-size: 100%; }
+
+.btn-modify {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  top: 6px;
+  left: 4px;
+  width: 14px;
+  height: 14px;
+  background: url("../images/btn-modify.png") no-repeat;
+  background-size: 100%; }
+
+.btn-done {
+  background: url("../images/btn-done.png") no-repeat;
+  width: 13px;
+  height: 13px;
+  background-size: 100%;
+  display: inline-block;
+  position: relative;
+  top: 13px;
+  left: 5px; }
+
+.btn-done:hover {
+  background: url("../images/btn-done-hover.png") no-repeat;
+  width: 13px;
+  height: 13px;
+  background-size: 100%;
+  display: inline-block;
+  position: relative;
+  top: 13px;
+  left: 5px; }
+
+.pastdue {
+  color: #ff0000; }
+
+.todo-btns {
+  position: absolute;
+  top: 2px;
+  right: 10px; }
+
+#todo-current ul {
+  margin-bottom: 7px; }
+
+#todo-clear-finished {
+  font-size: .75em;
+  color: #797a7a; }
+
+#todo-clear-finished:hover {
+  color: #2f85bc; }
+
+input[type=button] {
+  border: 1px solid #a7a9ab;
+  background-color: #a7a9ab;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  color: #fff;
+  padding: 2px 5px;
+  transition: background-color .5s; }
+
+input[type=button]:hover {
+  background-color: #797a7a;
+  border: 1px solid #797a7a; }
+
+#archiveList span {
+  display: inline-block;
+  margin-bottom: 8px; }
